@@ -1,39 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Una invitación para Mayra ☾</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Una misión para Mayra 🎈</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap');
+
+    :root {
+      --blue: #35bdf2;
+      --deep-blue: #1552a3;
+      --pink: #ff5797;
+      --yellow: #ffdb3b;
+      --green: #64d878;
+      --purple: #8356d9;
+      --ink: #24345e;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
     }
-#noBtn {
-  transition: .18s ease;
-}
 
-#noBtn:hover {
-  background: #fff0f7;
-}
     body {
       min-height: 100vh;
+      font-family: "Fredoka", system-ui, sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255, 220, 235, .9), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(210, 190, 255, .7), transparent 35%),
-        linear-gradient(135deg, #fff7fb, #fdf2f8, #f7efff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-      color: #4a3140;
+        linear-gradient(180deg, #55cef5 0%, #a4eaff 62%, #76d878 62%, #49bd67 100%);
       overflow-x: hidden;
     }
 
-    .bg-symbols {
+    button, textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .sky {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -41,99 +50,98 @@
       z-index: 0;
     }
 
-    .symbol {
+    .cloud {
       position: absolute;
-      opacity: .28;
-      animation: float 7s ease-in-out infinite;
-      font-size: 28px;
+      color: white;
+      font-size: 5rem;
+      opacity: .85;
+      animation: cloudMove 28s linear infinite;
     }
 
-    .symbol:nth-child(1) { top: 10%; left: 8%; animation-delay: 0s; }
-    .symbol:nth-child(2) { top: 18%; right: 12%; animation-delay: 1s; }
-    .symbol:nth-child(3) { bottom: 15%; left: 12%; animation-delay: 2s; }
-    .symbol:nth-child(4) { bottom: 8%; right: 10%; animation-delay: 3s; }
-    .symbol:nth-child(5) { top: 55%; left: 5%; animation-delay: 1.5s; }
-    .symbol:nth-child(6) { top: 48%; right: 6%; animation-delay: 2.5s; }
+    .cloud:nth-child(1) { top: 8%; left: -8%; }
+    .cloud:nth-child(2) { top: 32%; right: -10%; animation-delay: -10s; }
+    .cloud:nth-child(3) { top: 66%; left: 4%; font-size: 3rem; animation-delay: -18s; }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0); }
-      50% { transform: translateY(-18px) rotate(8deg); }
+    @keyframes cloudMove {
+      from { transform: translateX(-20px); }
+      50% { transform: translateX(70px); }
+      to { transform: translateX(-20px); }
     }
 
-    .card {
+    .wrapper {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      max-width: 760px;
-      background: rgba(255, 255, 255, .72);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, .9);
-      box-shadow: 0 30px 80px rgba(152, 91, 130, .22);
+      max-width: 850px;
+      margin: auto;
+      padding: 28px 18px 45px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      color: white;
+      font-weight: 800;
+      text-shadow: 0 2px 0 rgba(21, 82, 163, .2);
+    }
+
+    .brand {
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      background: white;
+      color: var(--pink);
+      border: 3px solid var(--ink);
+      border-radius: 99px;
+      padding: 7px 13px;
+      box-shadow: 0 4px 0 var(--ink);
+      font-size: .82rem;
+    }
+
+    .game-card {
+      background: #fffdf4;
+      border: 5px solid var(--ink);
       border-radius: 34px;
-      padding: 38px;
-      position: relative;
-      z-index: 2;
+      box-shadow: 0 10px 0 var(--ink), 0 20px 35px rgba(19, 65, 115, .18);
+      padding: clamp(23px, 5vw, 48px);
       text-align: center;
-      animation: appear .45s ease;
+      animation: enter .5s ease;
     }
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(18px) scale(.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .moon {
-      width: 72px;
-      height: 72px;
-      background: linear-gradient(135deg, #f7cde1, #d8c6ff);
-      border-radius: 50%;
-      margin: 0 auto 18px;
-      position: relative;
-      box-shadow: 0 12px 35px rgba(216, 155, 193, .35);
-    }
-
-    .moon::after {
-      content: "";
-      position: absolute;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      background: rgba(255, 247, 251, .95);
-      right: -8px;
-      top: 4px;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      color: #3d2634;
-      margin-bottom: 14px;
-      line-height: 1.1;
-    }
-
-    p {
-      font-size: 1.05rem;
-      color: #6d5261;
-      line-height: 1.7;
-      margin-bottom: 14px;
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(22px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .progress {
-      margin-bottom: 22px;
-      color: #c56f9b;
+      display: inline-block;
+      padding: 7px 15px;
+      border-radius: 99px;
+      background: var(--yellow);
+      border: 3px solid var(--ink);
+      box-shadow: 0 3px 0 var(--ink);
+      font-size: .8rem;
       font-weight: 800;
       letter-spacing: .04em;
-      font-size: .9rem;
-      text-transform: uppercase;
+      margin-bottom: 24px;
     }
 
-    .sticker {
-      font-size: 3.4rem;
-      margin: 20px 0;
-      animation: bounce 2.4s ease-in-out infinite;
+    .hero-art {
+      width: 145px;
+      height: 145px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: var(--pink);
+      border: 5px solid var(--ink);
+      box-shadow: 0 7px 0 var(--ink);
+      display: grid;
+      place-items: center;
+      font-size: 5rem;
+      animation: bounce 2s ease-in-out infinite;
     }
 
     @keyframes bounce {
@@ -141,161 +149,228 @@
       50% { transform: translateY(-10px) rotate(3deg); }
     }
 
+    h1 {
+      font-family: "Baloo 2", sans-serif;
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
+      line-height: .98;
+      color: var(--deep-blue);
+      margin-bottom: 18px;
+      font-weight: 800;
+    }
+
+    h1 span {
+      color: var(--pink);
+    }
+
+    p {
+      font-size: 1.08rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      color: #52617e;
+    }
+
+    .subtitle {
+      font-weight: 600;
+    }
+
+    .sticker {
+      display: inline-block;
+      background: #d9f6ff;
+      border: 3px solid var(--ink);
+      border-radius: 20px;
+      padding: 12px 20px;
+      margin: 15px 0;
+      font-size: 2.5rem;
+      box-shadow: 0 4px 0 var(--ink);
+    }
+
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 14px;
       flex-wrap: wrap;
-      margin-top: 26px;
+      gap: 14px;
+      margin-top: 27px;
     }
 
     button {
-      border: none;
-      border-radius: 999px;
-      padding: 15px 24px;
+      border: 3px solid var(--ink);
+      border-radius: 18px;
+      padding: 14px 23px;
       font-size: 1rem;
       font-weight: 800;
-      cursor: pointer;
-      transition: .25s ease;
+      color: var(--ink);
+      box-shadow: 0 5px 0 var(--ink);
+      transition: transform .15s, box-shadow .15s;
     }
 
     button:hover {
       transform: translateY(-3px);
+      box-shadow: 0 8px 0 var(--ink);
+    }
+
+    button:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 var(--ink);
     }
 
     .primary {
-      background: linear-gradient(135deg, #f5a9ca, #c7b2ff);
-      color: #382236;
-      box-shadow: 0 14px 30px rgba(197, 111, 155, .28);
+      background: var(--pink);
+      color: white;
+    }
+
+    .yellow {
+      background: var(--yellow);
+    }
+
+    .blue {
+      background: var(--blue);
+    }
+
+    .green {
+      background: var(--green);
     }
 
     .secondary {
-      background: #fff;
-      color: #8d5f76;
-      border: 1px solid #f1ccdd;
+      background: white;
     }
 
     .options {
+      display: grid;
+      gap: 13px;
+      margin-top: 25px;
+    }
+
+    .option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      text-align: left;
+      background: white;
+      border: 3px solid #b9c5db;
+      border-radius: 18px;
+      padding: 15px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: .2s;
+    }
+
+    .option:hover {
+      border-color: var(--pink);
+      background: #fff1f7;
+      transform: translateX(4px);
+    }
+
+    .option input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--pink);
+      flex-shrink: 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      margin-top: 20px;
+      padding: 15px;
+      resize: vertical;
+      border: 3px solid #b9c5db;
+      border-radius: 18px;
+      outline: none;
+      background: white;
+      color: var(--ink);
+    }
+
+    textarea:focus {
+      border-color: var(--pink);
+    }
+
+    .tiny {
+      font-size: .9rem;
+      color: #7b8aa4;
+    }
+
+    .summary {
+      text-align: left;
       display: grid;
       gap: 12px;
       margin-top: 24px;
     }
 
-    .option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, .82);
-      border: 1px solid rgba(238, 194, 216, .8);
-      color: #523746;
-      text-align: left;
-      cursor: pointer;
-      transition: .22s ease;
-    }
-
-    .option:hover {
-      transform: translateX(5px);
-      background: #fff;
-      box-shadow: 0 12px 25px rgba(199, 144, 174, .16);
-    }
-
-    .option input {
-      accent-color: #d979aa;
-      transform: scale(1.15);
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 100px;
-      resize: none;
-      margin-top: 20px;
-      border-radius: 22px;
-      padding: 16px;
-      border: 1px solid #efc9dc;
-      background: rgba(255,255,255,.8);
-      outline: none;
-      color: #523746;
-      font-size: 1rem;
-    }
-
-    textarea::placeholder {
-      color: #ad8498;
-    }
-
-    .summary {
-      text-align: left;
-      margin-top: 22px;
-      display: grid;
-      gap: 12px;
-    }
-
     .summary-box {
-      background: rgba(255,255,255,.75);
-      border: 1px solid #f0ccdd;
-      border-radius: 22px;
-      padding: 16px;
-      color: #563848;
+      background: #f0f8ff;
+      border: 3px solid #c1d9ed;
+      border-radius: 18px;
+      padding: 15px;
       line-height: 1.6;
+      overflow-wrap: anywhere;
     }
 
-    .tiny {
-      font-size: .92rem;
-      color: #8a6878;
+    .summary-box b {
+      color: var(--pink);
+    }
+
+    #noBtn {
+      background: white;
+      transition: .12s;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 22px;
+      color: white;
+      font-weight: 700;
+      font-size: .9rem;
+      text-shadow: 0 2px 0 rgba(21, 82, 163, .2);
     }
 
     .heart {
       position: fixed;
+      z-index: 20;
       pointer-events: none;
-      z-index: 10;
-      animation: heartUp 1.2s ease forwards;
-      font-size: 24px;
+      font-size: 27px;
+      animation: pop 1.3s ease forwards;
     }
 
-    @keyframes heartUp {
-      from {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(-90px) scale(1.7);
-      }
+    @keyframes pop {
+      from { opacity: 1; transform: translateY(0) scale(.8) rotate(0); }
+      to { opacity: 0; transform: translateY(-130px) scale(1.5) rotate(25deg); }
     }
 
     @media (max-width: 560px) {
-      .card {
-        padding: 26px;
-        border-radius: 28px;
-      }
-
-      button {
-        width: 100%;
-      }
+      .wrapper { padding: 18px 12px 35px; }
+      .game-card { border-radius: 27px; padding: 25px 19px; }
+      .hero-art { width: 115px; height: 115px; font-size: 4rem; }
+      .buttons button { width: 100%; }
+      .topbar { font-size: .9rem; }
     }
   </style>
 </head>
 
 <body>
-  <div class="bg-symbols">
-    <span class="symbol">☾</span>
-    <span class="symbol">🫧</span>
-    <span class="symbol">🦢</span>
-    <span class="symbol">🕯️</span>
-    <span class="symbol">🌷</span>
-    <span class="symbol">☕</span>
+  <div class="sky" aria-hidden="true">
+    <span class="cloud">☁️</span>
+    <span class="cloud">☁️</span>
+    <span class="cloud">☁️</span>
   </div>
 
-  <main class="card">
-    <div id="app"></div>
-  </main>
+  <div class="wrapper">
+    <div class="topbar">
+      <div class="brand">⭐ MAYRA'S WORLD</div>
+      <div class="badge">MISSION #001</div>
+    </div>
+
+    <main class="game-card">
+      <div id="app"></div>
+    </main>
+
+    <div class="footer">Hecho con cariño para Mayra 💗</div>
+  </div>
 
   <script>
     const WHATSAPP_NUMBER = "51943974880";
 
     const app = document.getElementById("app");
-
     let step = 0;
 
     const answers = {
@@ -303,8 +378,7 @@
       mood: "",
       disponibilidad: [],
       gustos: [],
-      detalleExtra: "",
-      mensaje: ""
+      detalleExtra: ""
     };
 
     const steps = [
@@ -330,112 +404,136 @@
 
     function intro() {
       app.innerHTML = `
-        <div class="moon"></div>
-        <h1>Mayra ☾</h1>
-        <p>
-          Tengo una pequeña invitación para ti.
-          No quería hacerlo de una forma común, así que preparé algo tranquilo,
-          bonito y con un poquito de intención.
+        <div class="progress">NUEVA MISIÓN DISPONIBLE</div>
+
+        <div class="hero-art">🎈</div>
+
+        <h1>¡Hey, <span>Mayra!</span></h1>
+
+        <p class="subtitle">
+          Tenemos una misión especial para ti.
         </p>
-        <div class="sticker">🫧🌙🌷</div>
-        <p class="tiny">Prometo que esto no toma mucho.</p>
+
+        <p>
+          He preparado algo diferente para hacerte una invitación.
+          Solo necesitas un poquito de curiosidad,
+          una sonrisa y unos minutos.
+        </p>
+
+        <div class="sticker">🌈 ⭐ 🎉</div>
+
+        <p class="tiny">¿Lista para comenzar la aventura?</p>
 
         <div class="buttons">
-          <button class="primary" onclick="popHearts(); next();">
-            Abrir invitación
+          <button class="primary" onclick="popHearts(); next()">
+            ¡Comenzar misión! 🚀
           </button>
         </div>
       `;
     }
 
     function mainQuestion() {
-  app.innerHTML = `
-    <div class="progress">Parte 1 de 6</div>
-    <h1>Mayra ☾</h1>
-    <p>Antes de continuar con esta invitación formalmente bonita...</p>
+      app.innerHTML = `
+        <div class="progress">MISIÓN 01 / 06</div>
 
-    <h1>¿Saldrías conmigo?</h1>
+        <div class="hero-art">💌</div>
 
-    <div class="sticker">🥺💌</div>
+        <h1>Mayra, tengo una pregunta...</h1>
 
-    <div class="buttons">
-      <button class="primary" onclick="saveSimple('aceptacion', 'Sí, saldría contigo ☁️')">
-        Sí ☁️
-      </button>
+        <p>
+          Después de evaluar todas las posibilidades,
+          el sistema encontró una misión importante.
+        </p>
 
-      <button class="secondary" id="noBtn">
-        No
-      </button>
-    </div>
+        <h1>¿Saldrías<br><span>conmigo?</span> ☺️</h1>
 
-    <p id="noMsg" class="tiny" style="margin-top:18px;"></p>
-  `;
+        <div class="sticker">🥺💗</div>
 
-  const noBtn = document.getElementById("noBtn");
-  const noMsg = document.getElementById("noMsg");
+        <div class="buttons">
+          <button class="primary"
+            onclick="saveSimple('aceptacion', 'Sí, saldría contigo ☁️')">
+            ¡Sí, vamos! 🎉
+          </button>
 
-  const frases = [
-    "Creo que era el otro botón 🐶",
-    "No se puede, la luna no autorizó eso ☾",
-    "Ese botón está tímido.",
-    "Error 404: rechazo no encontrado.",
-    "Mayra, el sistema recomienda reconsiderar 🌷",
-    "El botón No salió a comprar makis 🍣",
-    "Mi abogado dice que presiones Sí.",
-    "Ese botón no está disponible emocionalmente.",
-    "La opción correcta brilla más ✨",
-    "Intento válido, resultado inválido 🫧"
-  ];
+          <button class="secondary" id="noBtn">
+            No 🙈
+          </button>
+        </div>
 
-  function escapar() {
-    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+        <p id="noMsg" class="tiny" style="margin-top:20px;"></p>
+      `;
 
-    const x = Math.max(10, Math.random() * maxX);
-    const y = Math.max(10, Math.random() * maxY);
+      const noBtn = document.getElementById("noBtn");
+      const noMsg = document.getElementById("noMsg");
 
-    noBtn.style.position = "fixed";
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-    noBtn.style.zIndex = "999";
-    noBtn.style.transform = `rotate(${Math.random() * 30 - 15}deg) scale(${0.85 + Math.random() * 0.35})`;
+      const frases = [
+        "Ese botón se está escondiendo 😂",
+        "¡La misión necesita una reconsideración!",
+        "El botón No está de vacaciones 🌴",
+        "Error 404: rechazo no encontrado.",
+        "Sportacus recomienda intentarlo otra vez 💪",
+        "Stephanie dice que elijas el otro 💗",
+        "Ese botón tiene miedo de la aventura.",
+        "La opción rosa parece más interesante ✨"
+      ];
 
-    noMsg.textContent = frases[Math.floor(Math.random() * frases.length)];
-  }
+      function escapar() {
+        const maxX = Math.max(10, window.innerWidth - noBtn.offsetWidth - 20);
+        const maxY = Math.max(10, window.innerHeight - noBtn.offsetHeight - 20);
 
-  noBtn.addEventListener("mouseenter", escapar);
-  noBtn.addEventListener("mousemove", escapar);
-  noBtn.addEventListener("touchstart", function(e) {
-    e.preventDefault();
-    escapar();
-  });
+        const x = 10 + Math.random() * (maxX - 10);
+        const y = 10 + Math.random() * (maxY - 10);
 
-  noBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    escapar();
-  });
-}
+        noBtn.style.position = "fixed";
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+        noBtn.style.zIndex = "999";
+        noBtn.style.transform =
+          `rotate(${Math.random() * 30 - 15}deg)`;
+
+        noMsg.textContent =
+          frases[Math.floor(Math.random() * frases.length)];
+      }
+
+      noBtn.addEventListener("mouseenter", escapar);
+      noBtn.addEventListener("mousemove", escapar);
+
+      noBtn.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        escapar();
+      }, { passive: false });
+
+      noBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        escapar();
+      });
+    }
 
     function moodQuestion() {
       questionRadio(
-        "Parte 2 de 6",
-        "¿Qué tipo de plan te haría sentir más cómoda?",
-        "La idea es elegir algo que vaya contigo: tranquilo, bonito y cero incómodo.",
+        "MISIÓN 02 / 06",
+        "¿Qué aventura te gustaría?",
+        "Elige el plan que más te gustaría compartir conmigo.",
         "mood",
         [
-          "Café + postre, algo tranquilo ☕🍰",
-          "Makis y una conversación bonita 🍣",
-          "Caminar viendo el cielo o algún lugar lindo 🌅",
-          "Algo simple, sin mucha presión 🌷",
-          "Sorpréndeme, pero que sea bonito ✨"
+          "Café + postre ☕🍰",
+          "Makis y una buena conversación 🍣",
+          "Caminar y ver un lugar bonito 🌈",
+          "Una salida divertida y diferente 🎉",
+          "Algo tranquilo, sin mucha presión 🌷",
+          "Sorpréndeme ✨"
         ]
       );
     }
 
     function disponibilidadQuestion() {
       app.innerHTML = `
-        <div class="progress">Parte 3 de 6</div>
-        <h1>¿Cuándo sueles estar más libre?</h1>
+        <div class="progress">MISIÓN 03 / 06</div>
+
+        <div class="hero-art">📅</div>
+
+        <h1>¿Cuándo hacemos la misión?</h1>
+
         <p>Puedes marcar más de una opción.</p>
 
         <div class="options">
@@ -449,72 +547,89 @@
           ].map(item => `
             <label class="option">
               <input type="checkbox" value="${item}">
-              ${item}
+              <span>${item}</span>
             </label>
           `).join("")}
         </div>
 
-        <textarea id="extraTime" placeholder="Si quieres, escribe un día u horario que te acomode más..."></textarea>
+        <textarea id="extraTime"
+          placeholder="¿Hay algún día u horario que te acomode más?"></textarea>
 
         <div class="buttons">
-          <button class="primary" onclick="saveDisponibilidad()">Continuar</button>
+          <button class="blue" onclick="saveDisponibilidad()">
+            Continuar 🚀
+          </button>
         </div>
       `;
     }
 
     function gustosQuestion() {
       app.innerHTML = `
-        <div class="progress">Parte 4 de 6</div>
-        <h1>Para elegir bien el plan...</h1>
-        <p>Marca lo que más vaya contigo.</p>
+        <div class="progress">MISIÓN 04 / 06</div>
+
+        <div class="hero-art">🌟</div>
+
+        <h1>¡Personalicemos la aventura!</h1>
+
+        <p>Marca las cosas que más te gustan.</p>
 
         <div class="options">
           ${[
             "Me gusta el café ☕",
             "Me gustan los makis 🍣",
             "Me gustan los postres 🍰",
-            "Me gusta caminar 🌙",
+            "Me gusta caminar 🌈",
             "Prefiero lugares tranquilos 🕯️",
-            "Me gustan los lugares bonitos para fotos 🌷",
+            "Me gustan los lugares bonitos para fotos 📸",
             "Me gustan los paisajes y el cielo 🌅",
             "Prefiero algo simple y bonito 🫧"
           ].map(item => `
             <label class="option">
               <input type="checkbox" value="${item}">
-              ${item}
+              <span>${item}</span>
             </label>
           `).join("")}
         </div>
 
         <div class="buttons">
-          <button class="primary" onclick="saveGustos()">Continuar</button>
+          <button class="yellow" onclick="saveGustos()">
+            ¡Siguiente! ⭐
+          </button>
         </div>
       `;
     }
 
     function extraQuestion() {
       app.innerHTML = `
-        <div class="progress">Parte 5 de 6</div>
-        <h1>Último detalle</h1>
+        <div class="progress">MISIÓN 05 / 06</div>
+
+        <div class="hero-art">🎁</div>
+
+        <h1>Un último detalle...</h1>
+
         <p>
-          Para que el plan salga bonito, puedes dejarme una pista:
-          algo que te gustaría hacer, comer o evitar.
+          Para preparar una salida que vaya contigo,
+          puedes dejarme una pista.
         </p>
 
-        <textarea id="detalleExtra" placeholder="Ejemplo: prefiero algo tranquilo, me gustan los cafés bonitos, me encantan los makis, etc."></textarea>
+        <textarea id="detalleExtra"
+          placeholder="Algo que te gustaría hacer, comer o evitar..."></textarea>
 
         <div class="buttons">
-          <button class="secondary" onclick="answers.detalleExtra='Sin detalle extra'; next();">
+          <button class="secondary"
+            onclick="answers.detalleExtra='Sin detalle extra'; next()">
             Saltar
           </button>
-          <button class="primary" onclick="saveExtra()">Continuar</button>
+
+          <button class="green" onclick="saveExtra()">
+            Guardar pista 💡
+          </button>
         </div>
       `;
     }
 
     function finalScreen() {
-      const mensaje = `
-Holaa, acepto tu invitación ☾
+      const mensaje = `Holaa, acepto tu invitación ☾
 
 Mi respuesta:
 ${answers.aceptacion}
@@ -523,42 +638,74 @@ Plan que me haría sentir cómoda:
 ${answers.mood}
 
 Mi disponibilidad:
-${answers.disponibilidad.length ? answers.disponibilidad.map(x => "- " + x).join("\\n") : "- Coordinamos por WhatsApp"}
+${answers.disponibilidad.length
+  ? answers.disponibilidad.map(x => "- " + x).join("\n")
+  : "- Coordinamos por WhatsApp"}
 
 Cosas que me gustan:
-${answers.gustos.length ? answers.gustos.map(x => "- " + x).join("\\n") : "- Lo vemos"}
+${answers.gustos.length
+  ? answers.gustos.map(x => "- " + x).join("\n")
+  : "- Lo vemos"}
 
 Detalle extra:
 ${answers.detalleExtra}
 
-Coordinemos :)
-      `;
+Coordinemos :)`;
 
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+      const url =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
 
       app.innerHTML = `
-        <div class="progress">Parte final</div>
-        <h1>Entonces, Mayra…</h1>
+        <div class="progress">¡MISIÓN COMPLETADA! 🏆</div>
+
+        <div class="hero-art">🎉</div>
+
+        <h1>¡Misión cumplida,<br><span>Mayra!</span></h1>
+
         <p>
-          Prometo que el plan será tranquilo, bonito y pensado con cariño.
-          Nada incómodo, nada raro, solo una salida para conocernos mejor.
+          Gracias por jugar conmigo.
+          Ahora solo falta hacer realidad nuestra aventura.
         </p>
 
-        <div class="sticker">☾🫧💌</div>
+        <div class="sticker">🌈 💗 ⭐</div>
 
         <div class="summary">
-          <div class="summary-box"><b>Respuesta:</b><br>${answers.aceptacion}</div>
-          <div class="summary-box"><b>Plan ideal:</b><br>${answers.mood}</div>
-          <div class="summary-box"><b>Disponibilidad:</b><br>${answers.disponibilidad.join("<br>") || "Coordinamos por WhatsApp"}</div>
-          <div class="summary-box"><b>Gustos:</b><br>${answers.gustos.join("<br>") || "Lo vemos"}</div>
-          <div class="summary-box"><b>Detalle extra:</b><br>${answers.detalleExtra}</div>
+          <div class="summary-box">
+            <b>Tu respuesta:</b><br>
+            ${answers.aceptacion}
+          </div>
+
+          <div class="summary-box">
+            <b>Plan ideal:</b><br>
+            ${answers.mood}
+          </div>
+
+          <div class="summary-box">
+            <b>Disponibilidad:</b><br>
+            ${answers.disponibilidad.join("<br>")
+              || "Coordinamos por WhatsApp"}
+          </div>
+
+          <div class="summary-box">
+            <b>Cosas que te gustan:</b><br>
+            ${answers.gustos.join("<br>") || "Lo vemos"}
+          </div>
+
+          <div class="summary-box">
+            <b>Detalle extra:</b><br>
+            ${answers.detalleExtra}
+          </div>
         </div>
 
         <div class="buttons">
           <button class="primary" onclick="window.open('${url}', '_blank')">
-            Sí, coordinemos por WhatsApp 💌
+            ¡Coordinemos! 💌
           </button>
         </div>
+
+        <p class="tiny" style="margin-top:20px;">
+          Una pequeña aventura para dos ☁️
+        </p>
       `;
 
       for (let i = 0; i < 18; i++) {
@@ -569,6 +716,7 @@ Coordinemos :)
     function questionRadio(progress, title, text, key, options) {
       app.innerHTML = `
         <div class="progress">${progress}</div>
+
         <h1>${title}</h1>
         <p>${text}</p>
 
@@ -576,13 +724,15 @@ Coordinemos :)
           ${options.map(option => `
             <label class="option">
               <input type="radio" name="${key}" value="${option}">
-              ${option}
+              <span>${option}</span>
             </label>
           `).join("")}
         </div>
 
         <div class="buttons">
-          <button class="primary" onclick="saveRadio('${key}')">Continuar</button>
+          <button class="primary" onclick="saveRadio('${key}')">
+            Continuar 🚀
+          </button>
         </div>
       `;
     }
@@ -594,7 +744,8 @@ Coordinemos :)
     }
 
     function saveRadio(key) {
-      const selected = document.querySelector(`input[name="${key}"]:checked`);
+      const selected =
+        document.querySelector(`input[name="${key}"]:checked`);
 
       if (!selected) {
         alert("Elige una opción bonita primero 🌷");
@@ -607,16 +758,20 @@ Coordinemos :)
     }
 
     function saveDisponibilidad() {
-      const selected = [...document.querySelectorAll("input[type='checkbox']:checked")]
-        .map(input => input.value);
+      const selected = [
+        ...document.querySelectorAll(
+          "input[type='checkbox']:checked"
+        )
+      ].map(input => input.value);
 
       const extra = document.getElementById("extraTime").value.trim();
 
       answers.disponibilidad = selected;
+
       if (extra) answers.disponibilidad.push(extra);
 
       if (!answers.disponibilidad.length) {
-        alert("Marca al menos una opción o escribe un horario posible ☾");
+        alert("Marca una opción o escribe un horario posible ☾");
         return;
       }
 
@@ -625,13 +780,16 @@ Coordinemos :)
     }
 
     function saveGustos() {
-      const selected = [...document.querySelectorAll("input[type='checkbox']:checked")]
-        .map(input => input.value);
+      const selected = [
+        ...document.querySelectorAll(
+          "input[type='checkbox']:checked"
+        )
+      ].map(input => input.value);
 
       answers.gustos = selected;
 
       if (!answers.gustos.length) {
-        alert("Marca al menos una cosita para elegir mejor el plan 🫧");
+        alert("Marca al menos una cosita que te guste 🫧");
         return;
       }
 
@@ -640,24 +798,31 @@ Coordinemos :)
     }
 
     function saveExtra() {
-      const extra = document.getElementById("detalleExtra").value.trim();
+      const extra =
+        document.getElementById("detalleExtra").value.trim();
+
       answers.detalleExtra = extra || "Sin detalle extra";
+
       popHearts();
       next();
     }
 
     function popHearts() {
-      const items = ["💗", "🫧", "☾", "🌷", "✨", "🦢"];
+      const items = ["💗", "⭐", "🎈", "🌈", "✨", "🫧", "🌷"];
 
       for (let i = 0; i < 5; i++) {
         const heart = document.createElement("div");
+
         heart.className = "heart";
-        heart.textContent = items[Math.floor(Math.random() * items.length)];
+        heart.textContent =
+          items[Math.floor(Math.random() * items.length)];
+
         heart.style.left = Math.random() * window.innerWidth + "px";
         heart.style.top = Math.random() * window.innerHeight + "px";
+
         document.body.appendChild(heart);
 
-        setTimeout(() => heart.remove(), 1200);
+        setTimeout(() => heart.remove(), 1300);
       }
     }
 
